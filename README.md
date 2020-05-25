@@ -24,6 +24,7 @@ to run tests:
 `$ pytest run`
 
 to run tests and get allure reporting:
+create 'allure_results' folder to store temp allure files and then:\
 `$ pytest --alluredir=allure_results`
 `$ pallure serve allure_results/`
 
