@@ -4,7 +4,8 @@ prerequisites:\
 installed: _python3_ and _pip3_
  
 steps:\
-install venv:\
+install virtual environment\
+then activate virtual environment:\
 `$ source venv/bin/activate`\
 
 install dependencies:\
