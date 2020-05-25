@@ -1,0 +1,161 @@
+---------- Title: Planet_id 10 doesn't exist ----------
+Description: When running pipeline with payload where planet_id = 10 returns empty result
+STR:
+* Create input json file
+* Put there {'id': 10} like a payload
+
+AR:
+* result file contains information about Planet #10
+
+ER:
+* result file contains empty results
+
+Notes:
+Can be checked by automation tests ->
+> test_pipeline.test__contract_values_name
+> test_pipeline.test__empty_payload_returns_all_planet
+_____________________________
+
+
+---------- Title: [Flaky] Empty payload {} returns wrong amount of planes ----------
+Description: When running pipeline with payload {} wrong amount of planes
+STR:
+* Create input json file
+* Put there {}
+
+AR:
+* result file contains information not about all planets
+
+ER:
+* result file contains information about all planets
+
+Notes:
+Can be checked by automation tests ->
+> test_pipeline.test__empty_payload_returns_all_planet
+_____________________________
+
+
+---------- Title: [Flaky] Sometimes 'population' filed equals 'unknown' ----------
+Description: When running pipeline with a valid payload(planet_id = [1-11]) returns wrong 'population' value
+STR:
+* Create input json file
+* Put there {'id': *id} # where *id - any planet id 1-11
+
+AR:
+* result contains information where 'population' == 'unknown'
+
+ER:
+* result file contains valid information about planet 'population' (e.g. not empty or 'unknown' result)
+
+Notes:
+Can be checked by automation tests ->
+> test_pipeline.test__contract_values_are_valid_and_not_empty
+_____________________________
+
+
+---------- Title: [Flaky] Sometimes 'population' filed equals 'None' ----------
+Description: When running pipeline with a valid payload(planet_id = [1-11]) returns wrong 'population' value
+STR:
+* Create input json file
+* Put there {'id': *id} # where *id - any planet id 1-11
+
+AR:
+* result contains information where 'population' == 'None'
+
+ER:
+* result file contains valid information about planet 'population' (e.g. not empty or 'None' result)
+
+Notes:
+Can be checked by automation tests ->
+> test_pipeline.test__contract_values_are_valid_and_not_empty
+_____________________________
+
+
+---------- Title: [Flaky] Wrong result file extension ----------
+Description: Sometimes pipeline saves results not in json file
+STR:
+* Create input json file
+* Put there {'id': *id} # where *id - any planet id 1-11
+
+AR:
+* result file contains valid file extension - json
+
+ER:
+* result file contains valid file extension - csv
+
+Notes:
+Can be checked by automation tests ->
+> test_pipeline.test__result_files_have_json_extension
+_____________________________
+
+
+---------- Title: Wrong error message if planet_id incorrect ----------
+Description: Wrong error message if wrong planet id is provided
+STR:
+* Create input json file
+* Put there {'id': 20}
+
+AR:
+* result file contains error message: 'The planet id is incorrect', 'different error messages'
+
+ER:
+* result file contains error message: 'The planet id was incorrect', 'different error messages'
+
+Notes:
+Can be checked by automation tests ->
+> test_pipeline.test__wrong_planet_id_returns_error
+_____________________________
+
+
+---------- Title: Wrong 'created_at' filed received ----------
+Description: Instead of 'created_at' filed there is a 'created' field
+STR:
+* Create input json file
+* Put there {'id': 3}
+
+AR:
+* result file contains field 'created'
+
+ER:
+* result file contains field 'created_at'
+
+Notes:
+Can be checked by automation tests ->
+> test_pipeline.test__contract_values_name
+_____________________________
+
+
+---------- Title: Planet_id=6 doesn't contain 'created_at' field----------
+Description: -||-
+STR:
+* Create input json file
+* Put there {'id': 6}
+
+AR:
+* result file doesn't contain field 'created_at'
+
+ER:
+* result file contains field 'created_at'
+
+Notes:
+Can be checked by automation tests ->
+> test_pipeline.test__contract_values_type # param planet_id=6
+_____________________________
+
+
+---------- Title: Planet_id=5 'surface_water' is string----------
+Description: Planet_id=5 'surface_water' is string when expecting to be int
+STR:
+* Create input json file
+* Put there {'id': 5}
+
+AR:
+* 'surface_water' is string
+
+ER:
+* 'surface_water' is integer
+
+Notes:
+Can be checked by automation tests ->
+> test_pipeline.test__contract_values_type # param planet_id=6
+_____________________________

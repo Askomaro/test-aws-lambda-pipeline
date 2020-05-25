@@ -1,0 +1,4 @@
+conditions_wait_time: 5
+polling_interval: 0.5
+
+delete_files_after_test_running: True
